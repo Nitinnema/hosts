@@ -56,7 +56,7 @@
         name: docker
         state: started
         enabled: yes
-    
+
     - name: Deploy Docker Container
       hosts: localhost
       become: true
@@ -67,21 +67,21 @@
         host_port: 3000
 
       tasks:
-       - name: Pull Docker image
-         docker_image:
-           name: "{{ docker_image }}"
-           state: present
+        - name: Pull Docker Image
+        docker_image:
+          name: "{{ docker_image }}"
+          state: present
 
-       - name: Run Docker container
-         docker_container:
-           name: "{{ container_name }}"
-           image: "{{ docker_image }}"
-           state: started
-           ports:
-             - "{{ host_port }}:3000"
+        - name: Run Docker Container
+        docker_container:
+          name: "{{ container_name }}"
+          image: "{{ docker_image }}"
+          state: started
+          ports:
+            - "{{ host_port }}:3000"
 
-       - name: Wait for the container to be reachable
-         wait_for:
-           host: "http://localhost:{{ host_port }}"
-           state: started
-           timeout: 60
+        - name: Wait for the container to be reachable
+          wait_for:
+            host: "http://localhost:{{ host_port }}"
+            state: started
+            timeout: 60
