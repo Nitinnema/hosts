@@ -68,17 +68,17 @@
 
       tasks:
         - name: Pull Docker Image
-        docker_image:
-          name: "{{ docker_image }}"
-          state: present
+          docker_image:
+            name: "{{ docker_image }}"
+            state: present
 
         - name: Run Docker Container
-        docker_container:
-          name: "{{ container_name }}"
-          image: "{{ docker_image }}"
-          state: started
-          ports:
-            - "{{ host_port }}:3000"
+          docker_container:
+            name: "{{ container_name }}"
+            image: "{{ docker_image }}"
+            state: started
+            ports:
+              - "{{ host_port }}:3000"
 
         - name: Wait for the container to be reachable
           wait_for:
