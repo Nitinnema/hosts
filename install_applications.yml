@@ -56,7 +56,7 @@
         name: docker
         state: started
         enabled: yes
-
+        
     - name: Deploy Docker Container
       hosts: localhost
       become: true
